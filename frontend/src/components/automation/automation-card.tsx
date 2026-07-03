@@ -33,7 +33,7 @@ function AutomationCard({ automation, onToggle, onRun, onDelete }: AutomationCar
           <div className="flex items-start justify-between mb-3">
             <div className="flex items-center gap-2">
               <div className="h-8 w-8 rounded-lg bg-[#00d4ff]/10 border border-[#00d4ff]/20 flex items-center justify-center">
-                {triggerIcons[automation.trigger] || <Zap className="h-4 w-4 text-[#00d4ff]" />}
+                {triggerIcons[automation.trigger.type] || <Zap className="h-4 w-4 text-[#00d4ff]" />}
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-white">{automation.name}</h3>
@@ -48,16 +48,16 @@ function AutomationCard({ automation, onToggle, onRun, onDelete }: AutomationCar
 
           <div className="flex items-center gap-2 mb-3">
             <Badge variant="info" className="text-[10px]">
-              Trigger: {automation.trigger}
+              Trigger: {automation.trigger.type}
             </Badge>
-            <Badge variant="purple" className="text-[10px]">
-              Action: {automation.action}
+            <Badge variant="default" className="text-[10px]">
+              Action: {automation.action.type}
             </Badge>
           </div>
 
           {automation.lastRun && (
             <p className="text-[10px] text-white/30 mb-3">
-              Last run: {automation.lastRun.toLocaleString()}
+              Last run: {new Date(automation.lastRun).toLocaleString()}
             </p>
           )}
 

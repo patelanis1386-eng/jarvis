@@ -31,9 +31,11 @@ export default function KnowledgePage() {
       id: uuidv4(),
       title: newEntry.title,
       content: newEntry.content,
+      summary: newEntry.content.slice(0, 100),
       tags: newEntry.tags.split(",").map((t) => t.trim()).filter(Boolean),
       source: newEntry.source,
-      connections: [],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
     })
     setNewEntry({ title: "", content: "", source: "", tags: "" })
     setShowAdd(false)
@@ -125,7 +127,7 @@ export default function KnowledgePage() {
                           {entry.tags.map((tag) => (
                             <Badge key={tag} variant="default" className="text-[10px] h-4 px-1.5">#{tag}</Badge>
                           ))}
-                          {entry.connections.length > 0 && (
+                          {entry.connections && entry.connections.length > 0 && (
                             <span className="text-[10px] text-white/30 flex items-center gap-1 ml-auto">
                               <Link2 className="h-3 w-3" />
                               {entry.connections.length} connections
@@ -159,7 +161,7 @@ export default function KnowledgePage() {
                   <div className="absolute inset-0 p-4">
                     <div className="w-full h-full relative">
                       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#00d4ff] shadow-[0_0_10px_rgba(0,212,255,0.5)]" />
-                      {selectedEntry.connections.map((_, i) => (
+                      {(selectedEntry.connections ?? []).map((_, i) => (
                         <div
                           key={i}
                           className="absolute w-2 h-2 rounded-full bg-purple-400/60"

@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
 export function ChatSidebar() {
-  const { conversations, activeConversationId, setActiveConversation, addConversation, deleteConversation } = useChatStore()
+  const { conversations, activeConversationId, setActiveConversation, createConversation, deleteConversation } = useChatStore()
   const [isOpen, setIsOpen] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -17,18 +17,8 @@ export function ChatSidebar() {
     c.title.toLowerCase().includes(searchQuery.toLowerCase())
   )
 
-  const handleNewChat = () => {
-    const id = `conv-${Date.now()}`
-    addConversation({
-      id,
-      title: "New Conversation",
-      messages: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      model: "gpt-4",
-      mode: "fast",
-    })
-    setActiveConversation(id)
+  const handleNewChat = async () => {
+    await createConversation("New Conversation")
   }
 
   return (

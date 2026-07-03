@@ -27,7 +27,7 @@ const tabs = [
 ]
 
 export default function SettingsPage() {
-  const { user, updateProfile } = useAuthStore()
+  const { user, updateUser: updateProfile } = useAuthStore()
   const [activeTab, setActiveTab] = useState("profile")
   const [showKey, setShowKey] = useState<string | null>(null)
 

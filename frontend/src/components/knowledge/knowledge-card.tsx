@@ -6,10 +6,10 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { BookOpen, ExternalLink, Share2 } from "lucide-react"
-import { KnowledgeEntry } from "@/types"
+import { Knowledge } from "@/types"
 
 interface KnowledgeCardProps {
-  entry: KnowledgeEntry
+  entry: Knowledge
   onExpand?: (id: string) => void
 }
 

@@ -3,11 +3,16 @@
 import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
 import { TrendingUp, TrendingDown, Minus } from "lucide-react"
-import { AnalyticsData } from "@/types"
 
 interface StatCardProps {
-  data: AnalyticsData
+  data: {
+    label: string
+    value: number
+    trend: "up" | "down" | "neutral"
+    change?: number
+  }
   icon?: React.ReactNode
   delay?: number
 }

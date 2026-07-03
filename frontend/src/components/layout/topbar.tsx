@@ -13,7 +13,7 @@ import {
   LogOut,
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Avatar } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -76,12 +76,9 @@ function Topbar({ onSearchOpen, notificationCount = 0 }: TopbarProps) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button className="outline-none">
-              <Avatar
-                fallback="TS"
-                online
-                size="sm"
-                glow
-              />
+              <Avatar className="h-8 w-8">
+                <AvatarFallback className="bg-[#00d4ff]/20 text-[#00d4ff] text-xs font-bold">TS</AvatarFallback>
+              </Avatar>
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">

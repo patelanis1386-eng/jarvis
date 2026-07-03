@@ -133,7 +133,7 @@ export default function MemoryPage() {
                         ))}
                       </div>
                       <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/5">
-                        <span className="text-[10px] text-white/30">{item.createdAt.toLocaleDateString()}</span>
+                        <span className="text-[10px] text-white/30">{new Date(item.timestamp).toLocaleDateString()}</span>
                         <button
                           onClick={() => deleteItem(item.id)}
                           className="opacity-0 group-hover:opacity-100 p-1 hover:bg-white/10 rounded transition-all"

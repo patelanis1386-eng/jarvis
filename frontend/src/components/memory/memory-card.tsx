@@ -7,19 +7,19 @@ import { Button } from "@/components/ui/button"
 import { Progress } from "@/components/ui/progress"
 import { motion } from "framer-motion"
 import { Star, Clock, Trash2, RefreshCw } from "lucide-react"
-import { MemoryItem } from "@/types"
+import { Memory } from "@/types"
 
 interface MemoryCardProps {
-  item: MemoryItem
+  item: Memory
   onDelete?: (id: string) => void
   onRefresh?: (id: string) => void
 }
 
-const typeConfig = {
-  fact: { label: "Fact", variant: "info" as const },
-  concept: { label: "Concept", variant: "purple" as const },
-  event: { label: "Event", variant: "success" as const },
-  preference: { label: "Preference", variant: "warning" as const },
+const typeConfig: Record<string, { label: string; variant: "default" | "info" | "success" | "warning" | "error" | "outline" }> = {
+  fact: { label: "Fact", variant: "info" },
+  concept: { label: "Concept", variant: "default" },
+  event: { label: "Event", variant: "success" },
+  preference: { label: "Preference", variant: "warning" },
 }
 
 function MemoryCard({ item, onDelete, onRefresh }: MemoryCardProps) {
@@ -55,11 +55,11 @@ function MemoryCard({ item, onDelete, onRefresh }: MemoryCardProps) {
                 <span className="text-[10px] text-white/30">Importance</span>
                 <span className="text-[10px] text-[#00d4ff]">{Math.round(item.importance * 100)}%</span>
               </div>
-              <Progress value={item.importance * 100} variant="default" />
+              <Progress value={item.importance * 100} />
             </div>
             <div className="flex items-center gap-1 text-[10px] text-white/30">
               <Clock className="h-3 w-3" />
-              {item.createdAt.toLocaleDateString()}
+              {new Date(item.timestamp).toLocaleDateString()}
             </div>
           </div>
 

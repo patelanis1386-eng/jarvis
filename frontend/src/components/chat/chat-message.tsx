@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Avatar } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { StreamingText } from "@/components/chat/streaming-text"
 import { Message } from "@/types"
@@ -31,14 +30,12 @@ function ChatMessage({ message, isStreaming = false }: ChatMessageProps) {
       transition={{ duration: 0.3 }}
       className={cn("flex gap-3 group", isUser ? "flex-row-reverse" : "flex-row")}
     >
-      <Avatar
-        fallback={isUser ? "U" : "J"}
-        size="md"
-        glow={!isUser}
-        className={cn(
-          isUser ? "bg-[#00d4ff]/20" : "bg-gradient-to-br from-[#00d4ff] to-[#0088ff]"
-        )}
-      />
+      <div className={cn(
+        "h-8 w-8 rounded-lg flex items-center justify-center text-xs font-bold shrink-0",
+        isUser ? "bg-[#00d4ff]/20 text-[#00d4ff]" : "bg-gradient-to-br from-[#00d4ff] to-[#0088ff] text-white"
+      )}>
+        {isUser ? "U" : "J"}
+      </div>
       <div className={cn("flex flex-col max-w-[75%]", isUser ? "items-end" : "items-start")}>
         <div
           className={cn(
@@ -56,7 +53,7 @@ function ChatMessage({ message, isStreaming = false }: ChatMessageProps) {
         </div>
         <div className="flex items-center gap-1 mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
           <span className="text-[10px] text-white/30">
-            {message.timestamp.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+            {new Date(message.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
           </span>
           {!isUser && (
             <>

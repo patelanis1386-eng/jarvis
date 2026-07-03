@@ -6,11 +6,11 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { motion, AnimatePresence } from "framer-motion"
 import { Search, Brain, X } from "lucide-react"
-import { MemoryItem } from "@/types"
+import { Memory } from "@/types"
 
 interface MemorySearchProps {
   onSearch?: (query: string) => void
-  results?: MemoryItem[]
+  results?: Memory[]
 }
 
 function MemorySearch({ onSearch, results = [] }: MemorySearchProps) {

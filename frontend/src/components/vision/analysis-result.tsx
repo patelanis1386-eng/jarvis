@@ -56,7 +56,7 @@ function AnalysisResult({ title, content, objects, labels, icon = "description" 
                 >
                   <span className="text-sm text-white/70 w-32 truncate">{obj.label}</span>
                   <div className="flex-1">
-                    <Progress value={obj.confidence * 100} variant="default" />
+                    <Progress value={obj.confidence * 100} />
                   </div>
                   <span className="text-xs text-white/40 w-10 text-right">
                     {Math.round(obj.confidence * 100)}%

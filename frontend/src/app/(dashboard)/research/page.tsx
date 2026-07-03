@@ -19,30 +19,29 @@ const researchHistory = [
   { topic: "Renewable Energy Storage Solutions", depth: "Fast", date: "1 week ago", sources: 8, status: "completed" },
 ]
 
+const sampleResults = {
+  summary: "Our research into this topic reveals significant developments across multiple domains. Key findings indicate a paradigm shift in how organizations approach this subject, with particular emphasis on AI-driven solutions. The data suggests a 47% increase in adoption rates over the past quarter, with enterprise solutions leading the charge. Emerging trends point toward decentralized architectures and increased automation.",
+  keyFindings: [
+    "Market adoption has increased by 47% in Q1 2026",
+    "Enterprise solutions dominate with 62% market share",
+    "AI integration reduced operational costs by 34%",
+    "Security concerns remain the primary adoption barrier",
+  ],
+  sources: [
+    { title: "Industry Report 2026 - Market Analysis", url: "#", relevance: 98, type: "Report" },
+    { title: "Academic Paper: Neural Approaches", url: "#", relevance: 95, type: "Academic" },
+    { title: "TechCrunch Analysis: Latest Trends", url: "#", relevance: 91, type: "News" },
+    { title: "Government White Paper on Regulation", url: "#", relevance: 88, type: "Government" },
+    { title: "Stanford Research Lab Publication", url: "#", relevance: 85, type: "Academic" },
+  ],
+}
+
 export default function ResearchPage() {
   const [topic, setTopic] = useState("")
   const [depth, setDepth] = useState("Moderate")
   const [isResearching, setIsResearching] = useState(false)
   const [progress, setProgress] = useState(0)
   const [results, setResults] = useState<typeof sampleResults | null>(null)
-
-  const sampleResults = {
-    summary: "Our research into this topic reveals significant developments across multiple domains. Key findings indicate a paradigm shift in how organizations approach this subject, with particular emphasis on AI-driven solutions. The data suggests a 47% increase in adoption rates over the past quarter, with enterprise solutions leading the charge. Emerging trends point toward decentralized architectures and increased automation.",
-    keyFindings: [
-      "Market adoption has increased by 47% in Q1 2026",
-      "Enterprise solutions dominate with 62% market share",
-      "AI integration reduced operational costs by 34%",
-      "Security concerns remain the primary adoption barrier",
-    ],
-    sources: [
-      { title: "Industry Report 2026 - Market Analysis", url: "#", relevance: 98, type: "Report" },
-      { title: "Academic Paper: Neural Approaches", url: "#", relevance: 95, type: "Academic" },
-      { title: "TechCrunch Analysis: Latest Trends", url: "#", relevance: 91, type: "News" },
-      { title: "Government White Paper on Regulation", url: "#", relevance: 88, type: "Government" },
-      { title: "Stanford Research Lab Publication", url: "#", relevance: 85, type: "Academic" },
-    ],
-  }
-
   const handleResearch = async () => {
     if (!topic.trim()) return
     setIsResearching(true)

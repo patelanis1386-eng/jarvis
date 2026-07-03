@@ -99,7 +99,7 @@ export interface ToolResult {
 export interface Memory {
   id: string;
   content: string;
-  type: "short_term" | "long_term" | "working";
+  type: "fact" | "concept" | "event" | "preference";
   tags: string[];
   importance: number;
   timestamp: string;
@@ -150,6 +150,7 @@ export interface Knowledge {
   tags: string[];
   source: string;
   embeddings?: number[];
+  connections?: string[];
   createdAt: string;
   updatedAt: string;
 }

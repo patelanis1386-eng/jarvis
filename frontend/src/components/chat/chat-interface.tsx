@@ -15,7 +15,7 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 
 export function ChatInterface() {
-  const { conversations, activeConversationId, addMessage, isStreaming, setIsStreaming } = useChatStore()
+  const { conversations, activeConversationId, sendMessage, isStreaming, isLoading } = useChatStore()
   const [input, setInput] = useState("")
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
@@ -28,45 +28,10 @@ export function ChatInterface() {
   }, [messages])
 
   const handleSend = async () => {
-    if (!input.trim() || !activeConversationId || isStreaming) return
-
-    const userMessage: Message = {
-      id: uuidv4(),
-      role: "user",
-      content: input.trim(),
-      timestamp: new Date(),
-      mode: "fast",
-    }
-
-    addMessage(activeConversationId, userMessage)
+    if (!input.trim() || isStreaming) return
+    const content = input.trim()
     setInput("")
-    setIsStreaming(true)
-
-    const fullResponse = "I've received your request. As JARVIS, I'm processing the information and preparing a comprehensive response. Here's what I found:\n\n" +
-      "1. **Analysis Complete** - Your request has been processed through my neural network\n" +
-      "2. **Data Retrieved** - Relevant information has been gathered from connected sources\n" +
-      "3. **Response Generated** - I've synthesized the information into a coherent answer\n\n" +
-      "Is there anything else I can help you with? I'm standing by for further instructions."
-
-    let displayedContent = ""
-    for (let i = 0; i < fullResponse.length; i++) {
-      await new Promise((r) => setTimeout(r, 15))
-      displayedContent += fullResponse[i]
-      if (i === fullResponse.length - 1 || i % 5 === 0) {
-        const currentContent = displayedContent
-        const assistantMessage: Message = {
-          id: uuidv4(),
-          role: "assistant",
-          content: currentContent,
-          timestamp: new Date(),
-          model: "gpt-4",
-          mode: "fast",
-        }
-        addMessage(activeConversationId, assistantMessage)
-      }
-    }
-
-    setIsStreaming(false)
+    await sendMessage(content)
   }
 
   const handleCopy = (content: string, id: string) => {
@@ -108,10 +73,9 @@ export function ChatInterface() {
                 {message.role === "assistant" && (
                   <div className="flex items-center gap-2 mb-1.5">
                     <span className="text-xs font-medium text-[#00d4ff]">JARVIS</span>
-                    <Badge variant="default" className="text-[10px] h-4 px-1.5">
-                      {message.mode || "fast"}
-                    </Badge>
-                    <span className="text-[10px] text-white/30">{message.model || "gpt-4"}</span>
+                    {message.model && (
+                      <span className="text-[10px] text-white/30">{message.model}</span>
+                    )}
                   </div>
                 )}
 
