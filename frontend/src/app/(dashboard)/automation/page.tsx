@@ -30,6 +30,7 @@ export default function AutomationPage() {
       trigger: { type: newAuto.trigger as "schedule" | "event" | "condition" | "webhook", config: {} },
       action: { type: newAuto.action as "api_call" | "send_message" | "run_plugin" | "custom", config: {} },
       enabled: true,
+      createdAt: new Date().toISOString(),
     })
     setNewAuto({ name: "", description: "", trigger: "schedule", action: "api_call" })
     setShowCreate(false)
