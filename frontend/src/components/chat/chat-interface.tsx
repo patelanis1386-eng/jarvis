@@ -15,8 +15,9 @@ import ReactMarkdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 
 export function ChatInterface() {
-  const { conversations, activeConversationId, sendMessage, isStreaming, isLoading } = useChatStore()
+  const { conversations, activeConversationId, sendMessage } = useChatStore()
   const [input, setInput] = useState("")
+  const [isStreaming, setIsStreaming] = useState(false)
   const [copiedId, setCopiedId] = useState<string | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
 
@@ -31,7 +32,9 @@ export function ChatInterface() {
     if (!input.trim() || isStreaming) return
     const content = input.trim()
     setInput("")
+    setIsStreaming(true)
     await sendMessage(content)
+    setIsStreaming(false)
   }
 
   const handleCopy = (content: string, id: string) => {
