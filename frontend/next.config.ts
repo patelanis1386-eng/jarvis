@@ -8,24 +8,6 @@ const nextConfig: NextConfig = {
         hostname: "**",
       },
     ],
-    formats: ["image/avif", "image/webp"],
-  },
-  experimental: {
-    serverActions: {
-      bodySizeLimit: "10mb",
-    },
-    turbo: {
-      rules: {
-        "*.svg": ["@svgr/webpack"],
-      },
-    },
-  },
-  webpack: (config) => {
-    config.module?.rules?.push({
-      test: /\.(glsl|vs|fs|vert|frag)$/,
-      type: "asset/source",
-    });
-    return config;
   },
   compress: true,
   reactStrictMode: true,
