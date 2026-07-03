@@ -1,0 +1,110 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+.slots
+
+# Virtual Environment
+venv/
+.venv/
+env/
+.env/
+virtualenv/
+
+# Node
+node_modules/
+.npm/
+.yarn/
+.pnp/
+.pnp.js
+yarn-error.log
+yarn-debug.log
+.lock-wscript
+
+# Next.js
+.next/
+out/
+build/
+
+# Environment Files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+.hypothesis/
+htmlcov/
+coverage/
+coverage.xml
+*.cover
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+# Docker
+.docker/
+docker-compose.override.yml
+
+# Backup
+*.bak
+*.backup
+
+# OS
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Uploads
+uploads/*
+!uploads/.gitkeep
+
+# Media
+media/*
+!media/.gitkeep
+
+# Static
+staticfiles/
+
+# Alembic
+alembic/versions/*.pyc
+
+# Sphinx
+docs/_build/
+docs/build/
+
+# Profiling
+.prof
+*.prof
