@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { motion } from "framer-motion"
-import { Plus, ArrowRight, Trash2, GripVertical } from "lucide-react"
+import { Plus, ArrowRight, Trash2, GripVertical, Zap } from "lucide-react"
 
 interface Step {
   id: string
