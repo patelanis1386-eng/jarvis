@@ -19,7 +19,7 @@ import type { Automation } from "@/types"
 export default function AutomationPage() {
   const { automations, addAutomation, toggleEnabled, deleteAutomation } = useAutomationStore()
   const [showCreate, setShowCreate] = useState(false)
-  const [newAuto, setNewAuto] = useState({ name: "", description: "", trigger: "", action: "" })
+  const [newAuto, setNewAuto] = useState({ name: "", description: "", trigger: "schedule" as string, action: "api_call" as string })
 
   const handleCreate = () => {
     if (!newAuto.name) return
@@ -27,12 +27,11 @@ export default function AutomationPage() {
       id: uuidv4(),
       name: newAuto.name,
       description: newAuto.description,
-      trigger: newAuto.trigger,
-      action: newAuto.action,
+      trigger: { type: newAuto.trigger as "schedule" | "event" | "condition" | "webhook", config: {} },
+      action: { type: newAuto.action as "api_call" | "send_message" | "run_plugin" | "custom", config: {} },
       enabled: true,
-      config: {},
     })
-    setNewAuto({ name: "", description: "", trigger: "", action: "" })
+    setNewAuto({ name: "", description: "", trigger: "schedule", action: "api_call" })
     setShowCreate(false)
   }
 
@@ -129,16 +128,16 @@ export default function AutomationPage() {
                   <div className="space-y-2 text-sm">
                     <div className="flex items-center gap-2 text-white/50">
                       <AlertCircle className="h-3.5 w-3.5" />
-                      <span>Trigger: {auto.trigger}</span>
+                      <span>Trigger: {auto.trigger.type}</span>
                     </div>
                     <div className="flex items-center gap-2 text-white/50">
                       <Play className="h-3.5 w-3.5" />
-                      <span>Action: {auto.action}</span>
+                      <span>Action: {auto.action.type}</span>
                     </div>
                     {auto.lastRun && (
                       <div className="flex items-center gap-2 text-white/50">
                         <Clock className="h-3.5 w-3.5" />
-                        <span>Last run: {auto.lastRun.toLocaleDateString()}</span>
+                        <span>Last run: {new Date(auto.lastRun).toLocaleDateString()}</span>
                       </div>
                     )}
                   </div>

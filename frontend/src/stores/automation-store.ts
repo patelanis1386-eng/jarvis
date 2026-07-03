@@ -11,11 +11,11 @@ interface AutomationState {
 
 export const useAutomationStore = create<AutomationState>((set) => ({
   automations: [
-    { id: "a1", name: "Daily Report", description: "Generates and sends daily activity report", trigger: "Schedule: 9 AM daily", action: "Generate report + Email", enabled: true, lastRun: new Date(), config: {} },
-    { id: "a2", name: "Memory Backup", description: "Backs up important memories to cloud", trigger: "Memory importance > 8", action: "Encrypt + Upload", enabled: true, lastRun: new Date(), config: {} },
-    { id: "a3", name: "Smart Inbox", description: "Categorizes and prioritizes incoming messages", trigger: "New message received", action: "Analyze + Categorize", enabled: false, lastRun: undefined, config: {} },
-    { id: "a4", name: "Code Review", description: "Auto-reviews code changes for quality", trigger: "Git push detected", action: "Lint + Test + Review", enabled: true, lastRun: new Date(), config: {} },
-    { id: "a5", name: "Research Brief", description: "Compiles daily research digest from saved topics", trigger: "Schedule: 8 AM daily", action: "Research + Summarize", enabled: false, lastRun: undefined, config: {} },
+    { id: "a1", name: "Daily Report", description: "Generates and sends daily activity report", trigger: { type: "schedule", config: {} }, action: { type: "api_call", config: {} }, enabled: true, lastRun: "2026-07-04T00:00:00Z", createdAt: "2026-07-04T00:00:00Z" },
+    { id: "a2", name: "Memory Backup", description: "Backs up important memories to cloud", trigger: { type: "event", config: {} }, action: { type: "custom", config: {} }, enabled: true, lastRun: "2026-07-04T00:00:00Z", createdAt: "2026-07-04T00:00:00Z" },
+    { id: "a3", name: "Smart Inbox", description: "Categorizes and prioritizes incoming messages", trigger: { type: "event", config: {} }, action: { type: "custom", config: {} }, enabled: false, createdAt: "2026-07-04T00:00:00Z" },
+    { id: "a4", name: "Code Review", description: "Auto-reviews code changes for quality", trigger: { type: "webhook", config: {} }, action: { type: "custom", config: {} }, enabled: true, lastRun: "2026-07-04T00:00:00Z", createdAt: "2026-07-04T00:00:00Z" },
+    { id: "a5", name: "Research Brief", description: "Compiles daily research digest from saved topics", trigger: { type: "schedule", config: {} }, action: { type: "send_message", config: {} }, enabled: false, createdAt: "2026-07-04T00:00:00Z" },
   ],
 
   addAutomation: (auto) => set((s) => ({ automations: [...s.automations, auto] })),
