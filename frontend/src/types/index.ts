@@ -38,7 +38,7 @@ export interface Conversation {
   title: string;
   mode: ChatMode;
   model: string;
-  messages: number;
+  messages: Message[];
   tokens: number;
   createdAt: string;
   updatedAt: string;
